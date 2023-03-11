@@ -1,16 +1,15 @@
-// Objects Basics
+// nested objects
+// set variable as property value
+// dot notation vs bracket notation
 
-/*
-Objects are collections of key (property) value pairs
-Property values can be strings, numbers, booleans, arrays and functions however if the property value is a function it's called a method
-*/
+const age = 30;
 
-// object literal syntax,{}
-// dot notation
+let random = "random value";
+random = "age";
 
 const person = {
   name: "john",
-  age: 25,
+  age: age,
   siblings: ["anna", "susan", "peter"],
   greet: function (name) {
     console.log(`Hi, I am ${name}`);
@@ -18,19 +17,26 @@ const person = {
   sayHello(name) {
     console.log(`Hello, My name is ${name}`);
   },
+  job: {
+    title: "developer",
+    company: {
+      name: "coding addict",
+      address: "123 main street",
+    },
+  },
+  "random-value": "random",
 };
 
-console.log(person.name);
+console.log(person.job.company.name);
 
-// aassign and access the variable
-const firstName = person.sayHello("john");
+console.log(person.work); // undefined
 
-// Adding property
-person.city = "illinois";
+/* Cannot read properties of undefined (reading 'title') */
+// console.log(person.work.title);
 
-//Deleting property
-// delete person.siblings;
-const deleteSiblings = delete person.siblings;
-console.log(deleteSiblings);
+console.log(person["random-value"]);
+
+// check in person object for the property with age which is value of "random"
+console.log(person[random]);
 
 console.log(person);

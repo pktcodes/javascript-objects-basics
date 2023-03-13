@@ -1,36 +1,47 @@
-/* In Reg Functions (not arrow) "this"
-determined by "HOW"!!! a function is invoked (left of .)
+// Blue Print
+// Factory Functions and Constructor Functions
+// Factory Functions
 
-defaults to global - window
-arrow functions - pump the breaks
-*/
+// const john = {
+//   firstName: "john",
+//   lastName: "anderson",
+//   fullName: function () {
+//     // console.log(this);
+//     console.log(
+//       `Hello, my name is ${this.firstName} ${this.lastName} and I love JS`
+//     );
+//   },
+// };
 
-// console.log(this);
+// const bob = {
+//   firstName: "bob",
+//   lastName: "anderson",
+//   fullName: function () {
+//     // console.log(this);
+//     console.log(`Hello, my name is ${this.firstName} ${this.lastName}`);
+//   },
+// };
 
-function showThis() {
-  console.log(this);
+// john.fullName();
+// bob.fullName();
+
+function createPerson(firstName, lastName) {
+  return {
+    firstName: firstName,
+    lastName: lastName,
+    fullName: function () {
+      console.log(
+        `Hello, my name is ${this.firstName} ${this.lastName} and I love JS`
+      );
+    },
+  };
 }
 
-const john = {
-  name: "john",
-  showThis: showThis,
-};
+const john = createPerson("john", "anderson");
+john.fullName();
 
-const bob = {
-  name: "bob",
-  showThis: showThis,
-};
+const bob = createPerson("bob", "jordan");
+bob.fullName();
 
-john.showThis();
-bob.showThis();
-
-showThis();
-
-const btn1 = document.querySelector(".btn-1");
-const btn2 = document.querySelector(".btn-2");
-
-btn1.addEventListener("click", showThis);
-
-btn2.addEventListener("click", function () {
-  showThis();
-});
+const susy = createPerson("susy", "apple");
+susy.fullName();

@@ -1,23 +1,36 @@
-// this
-// points to the object which is left of the dot
+/* In Reg Functions (not arrow) "this"
+determined by "HOW"!!! a function is invoked (left of .)
+
+defaults to global - window
+arrow functions - pump the breaks
+*/
+
+// console.log(this);
+
+function showThis() {
+  console.log(this);
+}
 
 const john = {
-  firstName: "john",
-  lastName: "anderson",
-  fullName: function () {
-    console.log(this);
-    console.log(`hello, my name is ${this.firstName} ${this.lastName}`);
-  },
+  name: "john",
+  showThis: showThis,
 };
 
 const bob = {
-  firstName: "peter",
-  lastName: "anderson",
-  fullName: function () {
-    console.log(this);
-    console.log(`hello, my name is ${this.firstName} ${this.lastName}`);
-  },
+  name: "bob",
+  showThis: showThis,
 };
 
-john.fullName();
-bob.fullName();
+john.showThis();
+bob.showThis();
+
+showThis();
+
+const btn1 = document.querySelector(".btn-1");
+const btn2 = document.querySelector(".btn-2");
+
+btn1.addEventListener("click", showThis);
+
+btn2.addEventListener("click", function () {
+  showThis();
+});

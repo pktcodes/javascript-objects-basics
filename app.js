@@ -1,30 +1,27 @@
 // Blue Print
 // Factory Functions and Constructor Functions
-// Factory Functions
+// Constructor Functions
+// new - creates new object, points to it, omit return
 
-// const john = {
-//   firstName: "john",
-//   lastName: "anderson",
-//   fullName: function () {
-//     // console.log(this);
-//     console.log(
-//       `Hello, my name is ${this.firstName} ${this.lastName} and I love JS`
-//     );
-//   },
-// };
+/* Constructor Functions */
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.fullName = function () {
+    console.log(
+      `Hello, my name is ${this.firstName} ${this.lastName} and I love React`
+    );
+  };
+  console.log(this);
+}
 
-// const bob = {
-//   firstName: "bob",
-//   lastName: "anderson",
-//   fullName: function () {
-//     // console.log(this);
-//     console.log(`Hello, my name is ${this.firstName} ${this.lastName}`);
-//   },
-// };
+const john = new Person("john", "aderson");
+john.fullName();
 
-// john.fullName();
-// bob.fullName();
+const bob = new Person("bob", "jordon");
+bob.fullName();
 
+/* Factory Functions */
 function createPerson(firstName, lastName) {
   return {
     firstName: firstName,
@@ -37,11 +34,11 @@ function createPerson(firstName, lastName) {
   };
 }
 
-const john = createPerson("john", "anderson");
-john.fullName();
+// const john = createPerson("john", "anderson");
+// john.fullName();
 
-const bob = createPerson("bob", "jordan");
-bob.fullName();
+// const bob = createPerson("bob", "jordan");
+// bob.fullName();
 
-const susy = createPerson("susy", "apple");
-susy.fullName();
+// const susy = createPerson("susy", "apple");
+// susy.fullName();

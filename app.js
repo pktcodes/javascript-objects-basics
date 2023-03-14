@@ -1,7 +1,6 @@
-// Blue Print
-// Factory Functions and Constructor Functions
-// Constructor Functions
-// new - creates new object, points to it, omit return
+// All Objects in Javascript have access to constructor property that returns a constructor function that created it.
+// built in constructor functions
+// arrays and functions are objects in javascript
 
 /* Constructor Functions */
 function Person(firstName, lastName) {
@@ -12,33 +11,22 @@ function Person(firstName, lastName) {
       `Hello, my name is ${this.firstName} ${this.lastName} and I love React`
     );
   };
-  console.log(this);
 }
 
-const john = new Person("john", "aderson");
-john.fullName();
+const john = new Person("john", "anderson");
+console.log(john.constructor);
 
-const bob = new Person("bob", "jordon");
-bob.fullName();
+const bob = new Person("bob", "anderson");
+console.log(bob.constructor);
 
-/* Factory Functions */
-function createPerson(firstName, lastName) {
-  return {
-    firstName: firstName,
-    lastName: lastName,
-    fullName: function () {
-      console.log(
-        `Hello, my name is ${this.firstName} ${this.lastName} and I love JS`
-      );
-    },
-  };
-}
+const object = {};
+console.log(object.constructor);
 
-// const john = createPerson("john", "anderson");
-// john.fullName();
+const array = [];
+console.log(array.constructor);
 
-// const bob = createPerson("bob", "jordan");
-// bob.fullName();
+const sayHi = function () {};
+console.log(sayHi.constructor);
 
-// const susy = createPerson("susy", "apple");
-// susy.fullName();
+const susy = new john.constructor("susy", "anderson");
+susy.fullName();

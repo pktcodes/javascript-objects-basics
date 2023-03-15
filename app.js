@@ -1,32 +1,24 @@
-// All Objects in Javascript have access to constructor property that returns a constructor function that created it.
-// built in constructor functions
-// arrays and functions are objects in javascript
+/*
+Prototypal Inheritance Model
+Javascript uses prototypal inheritance model. That means that every constructor function/class has a prototype property that is shared by every instance of the constructor/class. So any properties and methods or prototype can be acessed by every instance. prototype property returns a object
+*/
 
-/* Constructor Functions */
-function Person(firstName, lastName) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.fullName = function () {
-    console.log(
-      `Hello, my name is ${this.firstName} ${this.lastName} and I love React`
-    );
-  };
+function Account(name, initialBalance) {
+  this.name = name;
+  this.balance = initialBalance;
 }
 
-const john = new Person("john", "anderson");
-console.log(john.constructor);
+Account.prototype.bank = "CHASE";
+Account.prototype.deposit = function (amount) {
+  this.balance = this.balance + amount;
+  console.log(`Hello ${this.name}, your balance is ${this.balance}`);
+};
 
-const bob = new Person("bob", "anderson");
-console.log(bob.constructor);
+const john = new Account("john", 200);
+const bob = new Account("bob", 400);
 
-const object = {};
-console.log(object.constructor);
+john.deposit(300);
+bob.deposit(1000);
 
-const array = [];
-console.log(array.constructor);
-
-const sayHi = function () {};
-console.log(sayHi.constructor);
-
-const susy = new john.constructor("susy", "anderson");
-susy.fullName();
+console.log(john);
+console.log(bob.bank);

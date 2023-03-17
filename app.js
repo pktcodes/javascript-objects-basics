@@ -1,35 +1,33 @@
-/*
-ES6 Classes - Syntactic Sugar
-Prototypal Inheritance
+// call - runs instantly, arguments - list of items
 
-No keywords inside the class (bank, deposit(){}) apart from constructor
-Property(bank) are created on each instance
-Methods(deposit(){}) are on prototype
-*/
+const john = {
+  name: "john",
+  age: 25,
+  greet: function () {
+    console.log(this);
+    console.log(`Hi, my name is ${this.name} and ${this.age}`);
+  },
+};
 
-class Account {
-  constructor(name, initialBalance) {
-    this.name = name;
-    this.balance = initialBalance;
-  }
-  bank = "Chase"; //This gets created on each instance
-  deposit(amount) {
-    this.balance = this.balance + amount;
-    console.log(`Hello ${this.name}, your balance is ${this.balance}`);
-  }
+const susan = {
+  name: "susan",
+  age: 21,
+};
+
+function greet() {
+  console.log(this);
+  console.log(`Hi, my name ${this.name} and I am ${this.age} years old`);
 }
 
-// Again, if want the a property on prototype to prevent memory issues, copy of same in each instance
-// Account.prototype.bank = "Bank of America";
+// this will fail
+// susan.greet();
+// greet();
+const secondGreet = john.greet;
+// secondGreet();
 
-const john = new Account("john", 200);
-console.log(john);
-console.log(john.name);
-console.log(john.bank);
-john.deposit(200);
+greet.call(john);
+greet.call(susan);
+greet.call({ name: "peter", age: 30 });
 
-const bob = new Account("bob", 0);
-console.log(bob);
-console.log(bob.name);
-console.log(john.bank);
-bob.deposit(1000);
+// Making "this" point to susan object
+john.greet.call(susan);

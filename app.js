@@ -1,12 +1,9 @@
 // call - runs instantly, arguments - list of items
+// call - runs instantly, arguments - array of items
 
 const john = {
   name: "john",
   age: 25,
-  greet: function () {
-    console.log(this);
-    console.log(`Hi, my name is ${this.name} and ${this.age}`);
-  },
 };
 
 const susan = {
@@ -14,20 +11,17 @@ const susan = {
   age: 21,
 };
 
-function greet() {
+function greet(city, country) {
   console.log(this);
-  console.log(`Hi, my name ${this.name} and I am ${this.age} years old`);
+  console.log(
+    `Hi, my name ${this.name} and I am ${this.age} years old and I live in ${city}, ${country}`
+  );
 }
 
-// this will fail
-// susan.greet();
-// greet();
-const secondGreet = john.greet;
-// secondGreet();
+// greet.call(john, "san diego", "us");
+// greet.call(susan, "san diego", "us");
+// greet.call({ name: "peter", age: 30 }, "san diego", "us");
 
-greet.call(john);
-greet.call(susan);
-greet.call({ name: "peter", age: 30 });
-
-// Making "this" point to susan object
-john.greet.call(susan);
+greet.apply(john, ["san diego", "us"]);
+greet.apply(susan, ["san diego", "us"]);
+greet.apply({ name: "peter", age: 30 }, ["san diego", "us"]);

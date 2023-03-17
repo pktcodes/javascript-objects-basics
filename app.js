@@ -1,24 +1,25 @@
 // call - runs instantly, arguments - list of items
-// call - runs instantly, arguments - array of items
+// apply - runs instantly, arguments - array of items
 // bind - assign, use later, arguments - list of items
 
-const john = {
-  name: "john",
-  age: 25,
+const btn = document.querySelector(".increment");
+
+const counter = {
+  count: 0,
+  increment() {
+    this.count = this.count + 1;
+    console.log(this);
+    console.log(this.count);
+  },
 };
 
-const susan = {
-  name: "susan",
-  age: 21,
-};
+// this will fail, since it points to btn
+// btn.addEventListener("click", counter.increment);
 
-function greet(city, country) {
-  console.log(this);
-  console.log(
-    `Hi, my name ${this.name} and I am ${this.age} years old and I live in ${city}, ${country}`
-  );
-}
+// some edge cases like remove event listener needs a function reference not a function
+// btn.addEventListener("click", counter.increment.bind(counter));
 
-// assign, call it later
-const susanGreet = greet.bind(susan, "macomb", "illinois");
-susanGreet();
+// this will work
+const increment = counter.increment.bind(counter);
+btn.addEventListener("click", increment);
+btn.removeEventListener("click", increment);
